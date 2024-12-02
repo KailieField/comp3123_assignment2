@@ -10,7 +10,10 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/test';
 
 const connect = async () => {
     try{
-        await mongoose.connect(mongoURI, {
+        await mongoose.connect(process.env.MONGO_URI, {
+
+            useNewUrlParser: true,
+            useUnifiedTopology: true, 
             /*
                 The following were throwing as deprications on my system
                 -- caused errors with connection

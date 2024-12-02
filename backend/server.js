@@ -10,12 +10,14 @@ const bodyParser = require('body-parser');
 const connect = require('./config/db'); //<--- mongoDb connection
 const userRoute = require('./api/v1/users');
 const employeeRoute = require('./api/v1/employee');
+const cors = require('cors');
 
 
 const app = express();
 
 
 // middleware
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
