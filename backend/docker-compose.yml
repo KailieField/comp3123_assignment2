@@ -18,7 +18,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017/comp3123_backend
+      - MONGO_URI=mongodb://mongo:27017/assignment2_db
       - JWT_SECRET=password123
 volumes:
   mongo_data:

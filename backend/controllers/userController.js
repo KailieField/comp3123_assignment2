@@ -14,7 +14,7 @@
 */
 
 const User = require('../models/Users'); //<-- model
-const bcrypt = require('bcrypt'); //<-- library for hashing
+const bcryptjs = require('bcryptjs'); //<-- library for hashing
 const jsonWebToken = require('jsonwebtoken'); //<-- JWT library
 const { validationResult } = require('express-validator'); //<-- validator
 
@@ -40,7 +40,7 @@ exports.signup = async (req, res) => {
         }
 
         // hashing
-        const hashedpw = await bcrypt.hash(password, 10);
+        const hashedpw = await bcryptjs.hash(password, 10);
         const createUser = new User({ username, email, password: hashedpw });
         await createUser.save();
 
@@ -82,7 +82,7 @@ exports.login = async (req, res) => {
         console.log(user); // debugging
 
         // passsword
-        if(!user || !(await bcrypt.compare(password, user.password))) {
+        if(!user || !(await bcryptjs.compare(password, user.password))) {
 
             return res.status(401).json({ message: '--- INVALID CREDENTIALS.' });
         }
